@@ -9,15 +9,15 @@ type Props = {
   textColor?: string;
 };
 
-export default function CustomInput({ placeholder, value, onChangeText, secureTextEntry, textColor }: Props) {
+export default function CustomInput({ placeholder, value, onChangeText, secureTextEntry }: Props) {
   return (
     <TextInput
-      style={[styles.input, textColor ? { color: textColor } : null]}
+      style={[styles.input, { color: '#000' }]}
       placeholder={placeholder}
       value={value}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
-      placeholderTextColor={textColor || '#999'}
+      placeholderTextColor="#999"
     />
   );
 }
