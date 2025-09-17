@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, Image } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import auth from '@react-native-firebase/auth';
@@ -18,8 +18,9 @@ export default function LoginScreen({ navigation }: any) {
     }
     try {
       await auth().signInWithEmailAndPassword(email, password);
-      Alert.alert('Login exitoso', 'Bienvenido');
-      // navigation.replace('Home'); // Descomenta si tienes Home
+      Alert.alert('Login exitoso', 'Bienvenido', [
+        { text: 'OK', onPress: () => navigation.navigate('Home') }
+      ]);
     } catch (error: any) {
       if (error.code === 'auth/user-not-found') {
         Alert.alert('Usuario no encontrado');
@@ -37,7 +38,15 @@ export default function LoginScreen({ navigation }: any) {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
+      <Image
+        source={require('../assets/imagen.png')}
+        style={{ width: 120, height: 120, alignSelf: 'center', marginBottom: 20 }}
+        resizeMode="contain"
+      />
       <Text style={{ fontSize: 22, marginBottom: 20 }}>Login</Text>
+      <Text style={{ fontSize: 16, marginBottom: 10, color: 'gray' }}>
+        Ingresa tu email y contraseña para acceder
+      </Text>
       <CustomInput placeholder="Email" value={email} onChangeText={setEmail} />
       <CustomInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
   <CustomButton title="Entrar" onPress={onLogin} />
