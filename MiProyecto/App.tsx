@@ -1,23 +1,15 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './src/screens/LoginScreen';
-import RegisterScreen from './src/screens/RegisterScreen';
-import HomeScreen from './src/screens/HomeScreen';
-
-const Stack = createNativeStackNavigator();
+import { useEffect } from 'react';
+import { GoogleSignin } from '@react-native-community/google-signin';
+import AppNavigator from './src/navigation/AppNavigator';
 
 export default function App() {
-  return (
-    
-        <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login">
-            <Stack.Screen name="Login" component={LoginScreen} />
-            <Stack.Screen name="Register" component={RegisterScreen} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-           
-          </Stack.Navigator>
-        </NavigationContainer>
-    
-  );
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId: '169392000943-vkej3l467qr74c41p61pbtsi1qjfpegr.apps.googleusercontent.com',
+      offlineAccess: true,
+    });
+  }, []);
+  return <AppNavigator />;
 }
+
