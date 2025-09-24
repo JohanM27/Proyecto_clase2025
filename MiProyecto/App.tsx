@@ -1,15 +1,15 @@
-import React from 'react';
 import { useEffect } from 'react';
-import { GoogleSignin } from '@react-native-community/google-signin';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import AppNavigator from './src/navigation/AppNavigator';
 
 export default function App() {
   useEffect(() => {
     GoogleSignin.configure({
-      webClientId: '169392000943-vkej3l467qr74c41p61pbtsi1qjfpegr.apps.googleusercontent.com',
+      webClientId: 'TU_CLIENT_ID_WEB.apps.googleusercontent.com', // ID Web
       offlineAccess: true,
+      scopes: ['https://www.googleapis.com/auth/calendar.events'],
     });
   }, []);
+
   return <AppNavigator />;
 }
-
